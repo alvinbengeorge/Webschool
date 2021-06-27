@@ -40,11 +40,13 @@
 			</div>
 		</nav>
 		<div class="text-center bg-primary">
-			<h1 style = "color:white">Please select your preferred time slots for studying</h1>
+			<h1 style = "color:white">Please select your preferred time slots for studying</h1>			
 		</div>
 		<div class="container">
-			<form role="form" action="">
+			
+			<form role="form" action="result.html">				
 				<div class="row badge bg-white text-wrap text-center position-absolute top-50 start-50 translate-middle">
+					
 					<div class="col btn-group" role="group" aria-label="Basic  toggle button group">
 						<input name = "monday0800" type="checkbox" class="btn-check" id="monday0800" autocomplete="off">
 						<label class="btn btn-outline-primary" for="monday0800">Monday 0800</label>
@@ -311,7 +313,11 @@
 					</div>
 					<br><br>
 					<div class="row mb-2">
-						<div class="col-sm-9"></div>
+						<div class="col-sm-9">
+							<div class="alert alert-danger alert-dismissible">
+								<p>The subject preference is as follows: Mathematics (everyday) - 1, English - 2, Science - 3, French - 4, History - 5. You need to pick a minimum of 18 hours per week</p>
+							</div>	
+						</div>
 						<div class="col-sm-3">
 							<button type="submit" class="btn btn-block btn-primary btn-lg float-right">Submit</button>
 						</div>
