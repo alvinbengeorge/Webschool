@@ -13,10 +13,21 @@
       border-radius: 25px;
     }
     </style>
+    <script>
+      api.executeCommand('startRecording', {
+      mode: string //recording mode, either `file` or `stream`.
+      dropboxToken: string, //dropbox oauth2 token.
+      shouldShare: true
+    });
+    api.executeCommand('stopRecording',
+        mode: string //recording mode to stop, `stream` or `file`
+    );
+    </script>
+
 
   </head>
-  <body style="background-size:95%; background-repeat:no-repeat;">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-secondary" id="navbarscroll" style="color:white;">
+  <body class="bg-dark" style="background-size:95%; background-repeat:no-repeat;">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark" id="navbarscroll" style="color:white;">
     <div class="container-fluid">
       <a class="navbar-brand badge bg-primary text-wrap text-center fs-3" href="Intro_page.html" style="color:white;">WebSchool</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,8 +51,8 @@
         </ul>
       </div>
     </nav>
-    <div class="container bg-secondary text-wrap text-center position-absolute top-50 start-50 translate-middle ratio ratio-21x9" style="border-radius: 24px;">
-      <iframe allow="camera; microphone; fullscreen; display-capture" src="https://meet.jit.si/WebSchool" class="video  top-50 start-50 translate-middle "  style="border-radius: 24px;"></iframe>
+    <div class="container bg-dark text-wrap text-center position-absolute top-50 start-50 translate-middle ratio ratio-21x9" style="border-radius: 24px;">
+      <iframe allow="camera; microphone; fullscreen; display-capture" src="https://meet.jit.si/WebSchool" class="video"  style="border-radius: 24px;"></iframe>
     </div>
   </body>
 </html>
