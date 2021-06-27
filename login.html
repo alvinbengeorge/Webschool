@@ -41,15 +41,17 @@
     <div class="col badge bg-primary text-wrap text-center position-absolute top-50 start-50 translate-middle" style="width: 33rem;">
       <div class="input-group flex-nowrap d-flex justify-content-end">
         <span class="input-group-text" id="addon-wrapping">Enter</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+        <form action="/login" method="POST">
+         <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" name="sup">
       </div>
       <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">Enter</span>
-        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping" name="pwd">
       </div>
       <div class="input-group flex-nowrap d-flex justify-content-end" style="padding:12px 0px;">
-        <button type="button" class="btn btn-light"><a class="nav-link active" aria-current="page" style="border-radius:9px; color:black;" href="login.html">Login</a></button>
-      </div>
+        <input type="submit" class="btn btn-light" name="submit"><a class="nav-link active" aria-current="page" style="border-radius:9px; color:black;" href="login.html">Login</a></button>
+        </form>
+        </div>
 
     </div>
 
