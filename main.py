@@ -2,6 +2,16 @@ import urllib
 import json
 from flask import *
 from firebase import Firebase
+from werkzeug.utils import secure_filename
+from io import StringIO
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfdocument import PDFDocument
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.pdfpage import PDFPage
+from pdfminer.pdfparser import PDFParser
+from gensim.summarization import summarize
+import re
 
 firebaseConfig = {
     "apiKey": "AIzaSyDw65BvUcaILJoXX8Mws5QOTRLjyXCGlf0",
@@ -39,6 +49,29 @@ def basic():
         except:
           return "Wrong email and password."
 
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+  if request.method == 'POST':
+    f = request.files.get('file')
+    f.save(secure_filename("f.text"))
+    output_string = StringIO()
+    with open(secure_filename("f.text"), 'rb') as in_file:
+        parser = PDFParser(in_file)
+        doc = PDFDocument(parser)
+        rsrcmgr = PDFResourceManager()
+        device = TextConverter(rsrcmgr, output_string, laparams=LAParams())
+        interpreter = PDFPageInterpreter(rsrcmgr, device)
+        for page in PDFPage.create_pages(doc):
+            interpreter.process_page(page)
+
+    document = output_string.getvalue()
+    document = document.replace("/n", "")
+    return render_template("Summary.html", chapter_summary = summarize(document, ratio = 0.1))
+    
+
+@app.route("/summarizer", methods = ["GET", "POST"])
+def summarizer():
+  return render_template("Summary.html")
 
 			
 			
