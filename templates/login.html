@@ -39,7 +39,7 @@
       </div>
     </nav>
     <div class="col badge bg-dark text-wrap text-center position-absolute top-50 start-50 translate-middle" style="width: 33rem;">
-      <form action="/login" method="POST">
+      <form action="/login" method="POST" style=" height:200px;">
         <div class="input-group flex-nowrap d-flex justify-content-end">
           <span class="input-group-text" id="addon-wrapping">Enter</span>
 
@@ -49,9 +49,15 @@
           <span class="input-group-text" id="addon-wrapping">Enter</span>
           <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping" name="pwd">
         </div>
-        <div class="input-group flex-nowrap d-flex justify-content-end" style="padding:9px 0px;">
-          <input type="submit" class="btn btn-light" name="submit"><a class="nav-link active" aria-current="page" style="border-radius:9px; color:black;" href="#"></a></button>
-
+        <div class="container">
+          <div class="row">
+            <div class="col input-group flex-nowrap d-flex justify-content-start" style="padding:3px 0px;">
+              <input type="submit" class="btn btn-light" name="submit"></button>
+            </div>
+            <div class="col input-group flex-nowrap d-flex justify-content-end" style="padding:3px 0px;">
+              <button class="btn btn-light" type="submit" name="register" value="delete">Register</button>
+            </div>
+          </div>
         </div>
       </form>
 
