@@ -13,23 +13,13 @@
       border-radius: 25px;
     }
     </style>
-    <script>
-      api.executeCommand('startRecording', {
-      mode: string //recording mode, either `file` or `stream`.
-      dropboxToken: string, //dropbox oauth2 token.
-      shouldShare: true
-    });
-    api.executeCommand('stopRecording',
-        mode: string //recording mode to stop, `stream` or `file`
-    );
-    </script>
 
 
   </head>
   <body class="bg-dark" style="background-size:95%; background-repeat:no-repeat;">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" id="navbarscroll" style="color:white;">
     <div class="container-fluid">
-      <a class="navbar-brand badge bg-primary text-wrap text-center fs-3" href="Intro_page.html" style="color:white;">WebSchool</a>
+      <a class="navbar-brand badge bg-primary text-wrap text-center fs-3" href="HomePage.html" style="color:white;">WebSchool</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,6 +31,15 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#About" style="color:black;">About</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:black;">External features</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="Gallery.html" target-"_blank">AR</a></li>
+              <li><a class="dropdown-item" href="Summary.html" target-"_blank">Notes</a></li>
+            </ul>
+          </li>
+
+
         </ul>
       </div>
       <div class="d-flex justify-content-end" id="navbarSupportedContent">
