@@ -5,3 +5,5 @@ urllib3==1.25.9
 gensim==3.8.3
 pdfminer==20191125
 sseclient==0.0.27
+moviepy==1.0.1
+SpeechRecognition==3.8.1
