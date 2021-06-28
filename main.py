@@ -17,19 +17,6 @@ app = Flask(__name__)
 fire = Firebase(firebaseConfig)
 auth = fire.auth()
 
-firebaseConfig = {
-    "apiKey": "AIzaSyDw65BvUcaILJoXX8Mws5QOTRLjyXCGlf0",
-    "authDomain": "webschool-7e9db.firebaseapp.com",
-    "projectId": "webschool-7e9db",
-    "storageBucket": "webschool-7e9db.appspot.com",
-    "messagingSenderId": "396594842645",
-    "appId": "1:396594842645:web:df2c845b47405bacb9521c",
-    "databaseURL" : " "
-  }
-
-fire = Firebase(firebaseConfig)
-auth = fire.auth()
-
 # Replace with this in main.py
 @app.route('/login', methods=['GET', 'POST'])
 def basic():
