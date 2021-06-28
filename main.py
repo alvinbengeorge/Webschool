@@ -53,9 +53,9 @@ def basic():
 def upload():
   if request.method == 'POST':
     f = request.files.get('file')
-    f.save(secure_filename("f.text"))
+    f.save(secure_filename("f.txt"))
     output_string = StringIO()
-    with open(secure_filename("f.text"), 'rb') as in_file:
+    with open(secure_filename("f.txt"), 'rb') as in_file:
         parser = PDFParser(in_file)
         doc = PDFDocument(parser)
         rsrcmgr = PDFResourceManager()
