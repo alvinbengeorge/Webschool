@@ -11,3 +11,5 @@ sumy==0.8.1
 punctuator==0.9.6
 glob2==0.7
 pydub==0.24.1
+nltk==3.6.2
+
