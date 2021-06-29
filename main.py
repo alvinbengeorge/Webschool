@@ -23,7 +23,7 @@ from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
 
-p = Punctuator('.\\files\\INTERSPEECH-T-BRNN.pcl')
+p = Punctuator('./files/INTERSPEECH-T-BRNN.pcl')
 r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
