@@ -41,7 +41,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <label for="formFileLg" class="form-label">Large file input example</label>
+          <label for="formFileLg" class="form-label" accept="application/pdf">Large file input</label>
           <form action = "/upload" method = "POST" enctype = "multipart/form-data">
           <input class="form-control form-control-lg" id="formFileLg" type="file" onchange="this.form.submit();" name = "file" />
           </form>

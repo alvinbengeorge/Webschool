@@ -60,7 +60,7 @@ def basic():
         password = request.form.get("pwd")
         try:
           login = auth.sign_in_with_email_and_password(email, password)
-          return render_template('Intro_page.html')
+          return render_template('HomePage.html')
         except:
           return "Wrong email and password."
 
