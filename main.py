@@ -11,7 +11,6 @@ from pdfminer.pdfdocument import PDFDocument
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
-from gensim.summarization import summarize
 import re
 import requests
 import os
@@ -24,7 +23,7 @@ from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
 nltk.download("punkt")
-p = Punctuator('./files/INTERSPEECH-T-BRNN.pcl')
+p = Punctuator('./static/INTERSPEECH-T-BRNN.pcl')
 r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
@@ -39,7 +38,7 @@ firebaseConfig = {
     "databaseURL" : " "
   }
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./static')
 fire = Firebase(firebaseConfig)
 auth = fire.auth()
 
@@ -65,13 +64,14 @@ def basic():
         except:
           return "Wrong email and password."
 
+
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
   if request.method == 'POST':
     f = request.files.get('file')
-    f.save(secure_filename("f.txt"))
+    f.save(secure_filename("./static/f.txt"))
     output_string = StringIO()
-    with open(secure_filename("./files/f.txt"), 'rb') as in_file:
+    with open(secure_filename("./static/f.txt"), 'rb') as in_file:
       parser = PDFParser(in_file)
       doc = PDFDocument(parser)
       rsrcmgr = PDFResourceManager()
@@ -81,20 +81,27 @@ def upload():
         interpreter.process_page(page)
       document = output_string.getvalue()
       document = document.replace("/n", "")
-      return render_template("Summary.html", chapter_summary = summarize(document, ratio = 0.3))
+      count = document.count(".")
+      noofsent = round(30/100 * count)
+      parser = PlaintextParser.from_string(document,Tokenizer("english"))
+      summary_2 =summarizer_lsa(parser.document,noofsent)
+      summary = ""
+      for sentence in summary_2:
+          summary += str(sentence)
+      return render_template("Summary.html", chapter_summary=summary)
 
 @app.route("/classnotesmaker", methods = ["GET", "POST"])
 def classnotes():
   req = requests.get(request.form.get("dropbox"), stream=True, headers=headers, allow_redirects=True)
-  open('./files/video.mp4', 'wb').write(req.content)
+  open('./static/video.mp4', 'wb').write(req.content)
   if not "chunks" in os.listdir():
       os.mkdir("./chunks")
   files = glob.glob('./chunks/*')
   for f in files:
       os.remove(f)
-  my_clip = mp.VideoFileClip("./files/video.mp4")
-  my_clip.audio.write_audiofile("./files/audio_from_video.wav")
-  audio = AudioSegment.from_wav("./files/audio_from_video.wav")
+  my_clip = mp.VideoFileClip("./static/video.mp4")
+  my_clip.audio.write_audiofile("./static/audio_from_video.wav")
+  audio = AudioSegment.from_wav("./static/audio_from_video.wav")
   duration = audio.duration_seconds
   t1 = 0 * 1000
   t2 = 59 * 1000
@@ -126,14 +133,39 @@ def classnotes():
       summary += str(sentence)
   return render_template("Summary.html", class_summary=summary)
 
-@app.route("/summarizer", methods = ["GET", "POST"])
-def summarizer():
-  return render_template("Summary.html")
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login_page():
 	return render_template('Intro_page.html')
 
+@app.route("/summarizer", methods = ["GET", "POST"])
+def summarizer():
+  return render_template("Summary.html")
+
+@app.route("/homepage", methods=["GET", "POST"])
+def home():
+  return render_template('HomePage.html')
+
+@app.route("/loginpage", methods=["GET", "POST"])
+def login():
+  return render_template('login.html')
+
+@app.route("/classpage", methods=["GET", "POST"])
+def classpage():
+  return render_template('Class.html')
+
+@app.route("/arpage", methods=["GET", "POST"])
+def ar():
+  return render_template('Gallery.html')
+
+@app.route("/aboutpage", methods=["GET", "POST"])
+def about():
+  return render_template('About.html')
+
+@app.route("/intropage", methods=["GET", "POST"])
+def intro():
+  return render_template('Intro_page.html')
 
 if __name__ == '__main__':
 	app.run()
