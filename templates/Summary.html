@@ -48,7 +48,7 @@
         </div>
         <div class="col">
           <form action="/classnotesmaker" method="POST">
-          <div class='d-flex justify-content-end'>
+          <div class='d-flex justify-content-end' style="height:50px; transform:translateY(-37%)">
             <input type="text" class="form-control" placeholder="Enter URL for dropbox" aria-label="Enter URL for dropbox" aria-describedby="addon-wrapping" name="dropbox" style="transform:translateY(100%);">
             <input type="submit" class="btn btn-light" name="submit" value="submit" style="transform:translateY(100%);">Submit</button>
           </div>
@@ -56,12 +56,12 @@
         </div>
       </div>
       <div class="row p-3" style="color:white;">
-        <div class="col bg-secondary p-3 border border-info">
+        <div class="col bg-dark p-3 border border-info">
           <p>
             {{chapter_summary}}
           </p>
         </div>
-        <div class="col p-3 bg-secondary border border-info">
+        <div class="col p-3 bg-dark border border-info">
           <p>
             {{class_summary}}
           </p>
