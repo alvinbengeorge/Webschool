@@ -44,14 +44,16 @@
           <label for="formFileLg" class="form-label">Large file input example</label>
           <form action = "/upload" method = "POST" enctype = "multipart/form-data">
           <input class="form-control form-control-lg" id="formFileLg" type="file" onchange="this.form.submit();" name = "file" />
+          </form>
         </div>
         <div class="col">
           <div class='d-flex justify-content-end'>
+            <form action="/classnotesmaker" method="POST">
             <input type="text" class="form-control" placeholder="Enter URL for dropbox" aria-label="Enter URL for dropbox" aria-describedby="addon-wrapping" name="dropbox" style="transform:translateY(100%);">
             <input type="submit" class="btn btn-light" name="submit" value="submit" style="transform:translateY(100%);">Submit</button>
+            </form>
           </div>
         </div>
-      </form>
       </div>
       <div class="row p-3" style="color:white;">
         <div class="col bg-secondary p-3 border border-info">
