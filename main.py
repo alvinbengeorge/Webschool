@@ -132,7 +132,7 @@ def summarizer():
 
 @app.route('/', methods=['GET', 'POST'])
 def login_page():
-	return render_template('login.html')
+	return render_template('Intro_page.html')
 
 
 if __name__ == '__main__':
