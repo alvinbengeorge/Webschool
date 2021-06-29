@@ -87,6 +87,8 @@ def upload():
 def classnotes():
   req = requests.get(request.form.get("dropbox"), stream=True, headers=headers, allow_redirects=True)
   open('./files/video.mp4', 'wb').write(req.content)
+  if not "chunks" in os.listdir():
+      os.mkdir("./chunks")
   files = glob.glob('./chunks/*')
   for f in files:
       os.remove(f)
