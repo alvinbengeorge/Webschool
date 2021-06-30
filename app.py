@@ -1,5 +1,4 @@
 import urllib
-import nltk
 import json
 from flask import *
 from firebase import Firebase
@@ -21,6 +20,7 @@ from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
 import glob
 from pydub import AudioSegment
+
 r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
@@ -93,6 +93,8 @@ def upload():
 
 @app.route("/classnotesmaker", methods = ["GET", "POST"])
 def classnotes():
+  if request.form.get("dropbox") == "" or request.form.get("dropbox") == " ":
+    return "Invalid link. Please enter the correct link and try again."
   req = requests.get(request.form.get("dropbox"), stream=True, headers=headers, allow_redirects=True)
   open('./static/video.mp4', 'wb').write(req.content)
   if not "chunks" in os.listdir():
@@ -117,7 +119,7 @@ def classnotes():
       with sr.AudioFile('./chunks/'+filename) as source:
           audio = r.record(source)
           try:
-              text = p.punctuate(r.recognize_google(audio))
+              text = r.recognize_google(audio)
               full_text += " " + text
           except sr.UnknownValueError:
               print("Google Speech Recognition could not understand audio")
@@ -125,14 +127,8 @@ def classnotes():
           except sr.RequestError as e:
               print("Could not request results from Google Speech Recognition service; {0}".format(e))
               break
-  count = full_text.count(".")
-  noofsent = round(30/100 * count)
-  parser = PlaintextParser.from_string(full_text,Tokenizer("english"))
-  summary_2 =summarizer_lsa(parser.document,noofsent)
-  summary = ""
-  for sentence in summary_2:
-      summary += str(sentence)
-  return render_template("Summary.html", class_summary=summary)
+  print(full_text)
+  return render_template("Summary.html", class_summary=full_text)
 
 @app.route("/summarizer", methods = ["GET", "POST"])
 def summarizer():
