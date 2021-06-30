@@ -28,6 +28,10 @@ r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
 
+@app.route('/', methods=['GET', 'POST'])
+def login_page():
+	return render_template('Intro_page.html')
+
 firebaseConfig = {
     "apiKey": "AIzaSyDw65BvUcaILJoXX8Mws5QOTRLjyXCGlf0",
     "authDomain": "webschool-7e9db.firebaseapp.com",
@@ -132,12 +136,6 @@ def classnotes():
   for sentence in summary_2:
       summary += str(sentence)
   return render_template("Summary.html", class_summary=summary)
-
-
-
-@app.route('/', methods=['GET', 'POST'])
-def login_page():
-	return render_template('Intro_page.html')
 
 @app.route("/summarizer", methods = ["GET", "POST"])
 def summarizer():
