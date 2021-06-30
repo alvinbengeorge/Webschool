@@ -19,11 +19,8 @@ from sumy.parsers.plaintext import PlaintextParser #We're choosing a plaintext p
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
-from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
-nltk.download("punkt")
-p = Punctuator('./static/INTERSPEECH-T-BRNN.pcl')
 r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
@@ -41,6 +38,10 @@ firebaseConfig = {
 app = Flask(__name__, static_folder='./static')
 fire = Firebase(firebaseConfig)
 auth = fire.auth()
+
+@app.route('/', methods=['GET', 'POST'])
+def login_page():
+	return render_template('Intro_page.html')
 
 # Replace with this in main.py
 @app.route('/login', methods=['GET', 'POST'])
@@ -133,12 +134,6 @@ def classnotes():
       summary += str(sentence)
   return render_template("Summary.html", class_summary=summary)
 
-
-
-@app.route('/', methods=['GET', 'POST'])
-def login_page():
-	return render_template('Intro_page.html')
-
 @app.route("/summarizer", methods = ["GET", "POST"])
 def summarizer():
   return render_template("Summary.html")
@@ -168,4 +163,6 @@ def intro():
   return render_template('Intro_page.html')
 
 if __name__ == '__main__':
-	app.run()
+  port = int(os.environ.get("PORT", 5000))
+  print(f"Running on: 127.0.0.1:{port}")
+  app.run(host='127.0.0.1', port=port, threaded=True)
