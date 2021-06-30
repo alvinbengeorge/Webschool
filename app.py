@@ -19,7 +19,6 @@ from sumy.parsers.plaintext import PlaintextParser #We're choosing a plaintext p
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
-from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
 nltk.download("punkt")
