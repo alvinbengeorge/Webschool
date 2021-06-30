@@ -19,9 +19,12 @@ from sumy.parsers.plaintext import PlaintextParser #We're choosing a plaintext p
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
+from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
+
 r = sr.Recognizer()
+p = Punctuator('./static/INTERSPEECH-T-BRNN.pcl')
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
 
@@ -93,6 +96,8 @@ def upload():
 
 @app.route("/classnotesmaker", methods = ["GET", "POST"])
 def classnotes():
+  if request.form.get("dropbox") == "" or request.form.get("dropbox") == " ":
+    return "Invalid link. Please enter the correct link and try again."
   req = requests.get(request.form.get("dropbox"), stream=True, headers=headers, allow_redirects=True)
   open('./static/video.mp4', 'wb').write(req.content)
   if not "chunks" in os.listdir():
