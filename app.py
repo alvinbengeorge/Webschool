@@ -21,8 +21,6 @@ from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
 import glob
 from pydub import AudioSegment
-nltk.download("punkt")
-p = Punctuator('./static/INTERSPEECH-T-BRNN.pcl')
 r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
