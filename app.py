@@ -127,14 +127,8 @@ def classnotes():
           except sr.RequestError as e:
               print("Could not request results from Google Speech Recognition service; {0}".format(e))
               break
-  count = full_text.count(".")
-  noofsent = round(30/100 * count)
-  parser = PlaintextParser.from_string(full_text,Tokenizer("english"))
-  summary_2 =summarizer_lsa(parser.document,noofsent)
-  summary = ""
-  for sentence in summary_2:
-      summary += str(sentence)
-  return render_template("Summary.html", class_summary=summary)
+  print(full_text)
+  return render_template("Summary.html", class_summary=full_text)
 
 @app.route("/summarizer", methods = ["GET", "POST"])
 def summarizer():
