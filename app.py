@@ -28,10 +28,6 @@ r = sr.Recognizer()
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
 
-@app.route('/', methods=['GET', 'POST'])
-def login_page():
-	return render_template('Intro_page.html')
-
 firebaseConfig = {
     "apiKey": "AIzaSyDw65BvUcaILJoXX8Mws5QOTRLjyXCGlf0",
     "authDomain": "webschool-7e9db.firebaseapp.com",
@@ -45,6 +41,10 @@ firebaseConfig = {
 app = Flask(__name__, static_folder='./static')
 fire = Firebase(firebaseConfig)
 auth = fire.auth()
+
+@app.route('/', methods=['GET', 'POST'])
+def login_page():
+	return render_template('Intro_page.html')
 
 # Replace with this in main.py
 @app.route('/login', methods=['GET', 'POST'])
