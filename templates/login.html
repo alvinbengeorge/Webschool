@@ -14,8 +14,8 @@
     </style>
 
   </head>
-  <body class="" style="background-size:95%; background-repeat:no-repeat; background-color:RGBA(20,20,20,1)">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" id="navbarscroll" style="color:white;">
+  <body class="bg-dark" style="background-size:95%; background-repeat:no-repeat;">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark" id="navbarscroll" style="color:white;">
     <div class="container-fluid">
       <a class="navbar-brand badge bg-primary text-wrap text-center fs-3" href= "/loginpage" style="color:white; font-family: Sofia;">WebSchool</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href= "/loginpage" style="color:black;">Home</a>
+            <a class="nav-link active" aria-current="page" href= "/loginpage" style="color:white;">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href= "/loginpage" style="color:black;">About</a>
+            <a class="nav-link active" aria-current="page" href= "/loginpage" style="color:white;">About</a>
           </li>
         </ul>
       </div>
@@ -39,12 +39,10 @@
         </ul>
       </div>
     </nav>
-    <div class="col badge bg-dark text-wrap text-center position-absolute top-50 start-50 translate-middle border" style="width: 33rem; border-radius:24px;">
-      <img src="./static/WS.png" class="img-thumbnail bg-dark border border-dark" alt="">
-      <form action="/login" method="POST" style=" height:200px;">
+    <div class="col badge text-wrap text-center position-absolute top-50 start-50 translate-middle border" style="width: 33rem; border-radius:12px; background-color:RGBA(0,0,0,0.9)">
+      <form action="/login" method="POST" style=" height:200px; transform:translateY(25%);">
         <div class="input-group flex-nowrap d-flex justify-content-end">
           <span class="input-group-text" id="addon-wrapping">Enter</span>
-
           <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" name="sup">
         </div>
         <div class="input-group flex-nowrap">
@@ -54,10 +52,10 @@
         <div class="container">
           <div class="row">
             <div class="col input-group flex-nowrap d-flex justify-content-start" style="padding:3px 0px;">
-              <input type="submit" class="btn btn-light" name="submit" value="login"></button>
+              <input type="submit" class="btn btn-light bg-primary border border-primary" name="submit" value="login" style="color:white; width:99%"></button>
             </div>
             <div class="col input-group flex-nowrap d-flex justify-content-end" style="padding:3px 0px;">
-              <button class="btn btn-light" type="submit" name="submit" value="register">Register</button>
+              <button class="btn btn-light bg-primary border border-primary" type="submit" name="submit" value="register" style="color:white; width:99%">Register</button>
             </div>
           </div>
         </div>
