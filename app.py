@@ -1,5 +1,4 @@
 import urllib
-import nltk
 import json
 from flask import *
 from firebase import Firebase
