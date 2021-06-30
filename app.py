@@ -18,12 +18,10 @@ from sumy.parsers.plaintext import PlaintextParser #We're choosing a plaintext p
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 import speech_recognition as sr
-from punctuator import Punctuator
 import glob
 from pydub import AudioSegment
 
 r = sr.Recognizer()
-p = Punctuator('./static/INTERSPEECH-T-BRNN.pcl')
 summarizer_lsa = LsaSummarizer()
 headers = {'user-agent': 'Wget/1.16 (linux-gnu)'}
 
@@ -121,7 +119,7 @@ def classnotes():
       with sr.AudioFile('./chunks/'+filename) as source:
           audio = r.record(source)
           try:
-              text = p.punctuate(r.recognize_google(audio))
+              text = r.recognize_google(audio)
               full_text += " " + text
           except sr.UnknownValueError:
               print("Google Speech Recognition could not understand audio")
